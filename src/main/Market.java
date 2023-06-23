@@ -102,7 +102,28 @@ public class Market {
 
     private static void listProduct(){
 
+        if(products.size() > 0){
 
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Lista de Produtos \n");
+
+            for(Product p : products){ /* Para cada produto existente */
+
+                System.out.println(p);
+
+            }
+
+            System.out.println("------------------------------------------------------------");
+
+        } else {
+
+            System.out.println("------------------------------------------------------------");
+            System.out.println("NÃO EXISTE NENHUM PRODUTO CADASTRADO!");
+            System.out.println("------------------------------------------------------------");
+
+        }
+
+        menu();
 
     }
 
