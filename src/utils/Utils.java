@@ -15,6 +15,7 @@ import java.util.Locale;
  */
 
 public class Utils {
+
     static NumberFormat numberFormat = 
         new DecimalFormat("R$ #,##0.00", 
             new DecimalFormatSymbols(new Locale("pt", "BR")));
@@ -23,4 +24,5 @@ public class Utils {
         /* Formata um valor para R$ */
         return numberFormat.format(value);
     }        
+    
 }

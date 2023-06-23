@@ -1,5 +1,7 @@
 package model;
 
+import utils.Utils;
+
 /**
  * Classe responsável por operações relacionadas ao Produto
  * 
@@ -23,5 +25,32 @@ public class Product {
         this.price = price;
         Product.count += 1;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product [id=" + this.getId() 
+            + ", name=" + this.getName() 
+                + ", price=" + Utils.doubleToString(this.getPrice()) + "]";
+    }   
 
 }

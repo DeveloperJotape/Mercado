@@ -7,6 +7,15 @@ import java.util.Scanner;
 
 import model.Product;
 
+/**
+ * Classe responsável por operações relacionadas ao Mercado
+ * 
+ * @author João Pedro
+ * @version 1.0
+ * @since 22/06/2023
+ * 
+ */
+
 public class Market {
 
     private static Scanner sc = new Scanner(System.in);
@@ -70,6 +79,30 @@ public class Market {
                 menu();
                 break;
         }
+
+    }
+
+    private static void registerProduct(){
+
+        System.out.println("------------------------------------------------------------");
+        System.out.println("Nome do produto: ");
+        String name = sc.nextLine();
+
+        System.out.println("Preço do produto: ");
+        Double price = sc.nextDouble();
+
+        Product product = new Product(name, price);
+        products.add(product);
+
+        System.out.println(product.getName() + " cadastrado com sucesso!");
+        System.out.println("------------------------------------------------------------");
+        menu();
+
+    }
+
+    private static void listProduct(){
+
+
 
     }
 
