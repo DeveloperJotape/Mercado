@@ -50,19 +50,19 @@ public class Market {
 
         switch(option){
             case 1:
-                //registerProduct();
+                registerProduct();
                 break;
 
             case 2:
-                //listProduct();
+                listProduct();
                 break;
             
             case 3:
-                //buyProduct();
+                buyProduct();
                 break;
 
             case 4:
-                //viewCart();
+                viewCart();
                 break;
                 
             case 5:
@@ -118,13 +118,92 @@ public class Market {
         } else {
 
             System.out.println("------------------------------------------------------------");
-            System.out.println("NÃO EXISTE NENHUM PRODUTO CADASTRADO!");
+            System.out.println("------------NÃO EXISTE NENHUM PRODUTO CADASTRADO------------");
             System.out.println("------------------------------------------------------------");
 
         }
 
         menu();
 
+    }
+
+    private static void buyProduct(){
+
+        if(products.size() > 0){ //Caso exista produtos cadastrados
+
+            System.out.println("------------------------------------------------------------");
+            System.out.println("--------------------PRODUTOS DISPONÍVEIS--------------------");
+            System.out.println("------------------------------------------------------------\n");
+
+            for(Product p : products){ /* Para cada produto existente */
+
+                System.out.println("    " + p + "\n");
+
+            }
+
+            System.out.println("\nCódigo do produto: ");
+            int id = Integer.parseInt(sc.next());
+            boolean isPresent = false;
+
+            for(Product p : products){
+
+                if(p.getId() == id){
+
+                    int amout = 0;
+
+                    try {
+
+                        amout = cart.get(p);  
+
+                        /* Checa se o produto (p) está no carrinho
+                            Será adicionado + 1 toda vez que um novo produto for adicionado ao carrinho*/
+                        cart.put(p, amout+1);     
+
+                    } catch (NullPointerException e) { /* Caso não exista produto será lançada uma excessão */
+                        
+                        // Caso o produto seja o primeiro do carrinho
+                        cart.put(p, 1);
+
+                    }
+
+                    System.out.println(p.getName() + " adicionado ao carrinho!");
+                    isPresent = true;
+
+                    if(isPresent){
+
+                        System.out.println("Deseja adicionar outro produto?"
+                        +                   "\n 1- Sim"
+                        +                   "\n 2- Finalizar compra"
+                        +                   "\nDigite e confirme sua escolha: ");
+                        int option = Integer.parseInt(sc.next());
+
+                        if(option == 1){
+                            buyProduct(); //Retorna o mesmo método caso o usuário queria prosseguir a compra
+                        }else{
+                            //checkout(); //Metodo finalizar compra
+                        }
+
+                    } else {
+
+                        System.out.println("------------------------------------------------------------");
+                        System.out.println("-------------------PRODUTO NÃO ENCONTRADO-------------------");
+                        System.out.println("------------------------------------------------------------");
+                        menu(); 
+
+                    }
+
+                } 
+
+            }   
+
+        } else { // Caso não exista nenhum produto cadastrado
+
+            System.out.println("------------------------------------------------------------");
+            System.out.println("------------NÃO EXISTE NENHUM PRODUTO CADASTRADO------------");
+            System.out.println("------------------------------------------------------------");
+            menu();
+
+        }
     }
 
 }
