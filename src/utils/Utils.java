@@ -19,7 +19,7 @@ public class Utils {
         new DecimalFormat("R$ #,##0.00", 
             new DecimalFormatSymbols(new Locale("pt", "BR")));
 
-    public static String doubleToString(String value){
+    public static String doubleToString(Double value){
         /* Formata um valor para R$ */
         return numberFormat.format(value);
     }        
