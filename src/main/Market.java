@@ -145,9 +145,9 @@ public class Market {
             int id = Integer.parseInt(sc.next());
             boolean isPresent = false;
 
-            for(Product p : products){
+            for(Product p : products){ // Percorre a lista de produtos
 
-                if(p.getId() == id){
+                if(p.getId() == id){ // Verifica se o ID que o usuário informou bate com o ID de um produto
 
                     int amout = 0;
 
@@ -204,6 +204,31 @@ public class Market {
             menu();
 
         }
+    }
+
+    private static void viewCart(){
+         
+        System.out.println("------------------------------------------------------------");
+        System.out.println("------------------PRODUTOS NO SEU CARRINHO------------------");
+        System.out.println("------------------------------------------------------------");
+        
+        if(cart.size() > 0){
+        
+            for(Product p : cart.keySet()){
+
+                System.out.println("Produto: " + p + 
+                                    "\nQuantidade: " + cart.get(p));  
+
+            }
+
+        } else {
+
+            System.out.println("Carrinho está vazio!");
+
+        }
+
+        menu();
+
     }
 
 }
