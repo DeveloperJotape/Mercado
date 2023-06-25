@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import model.Product;
+import utils.Utils;
 
 /**
  * Classe responsável por operações relacionadas ao Mercado
@@ -149,15 +150,15 @@ public class Market {
 
                 if(p.getId() == id){ // Verifica se o ID que o usuário informou bate com o ID de um produto
 
-                    int amout = 0;
+                    int quantity = 0;
 
                     try {
 
-                        amout = cart.get(p);  
+                        quantity = cart.get(p);  
 
                         /* Checa se o produto (p) está no carrinho
                             Será adicionado + 1 toda vez que um novo produto for adicionado ao carrinho*/
-                        cart.put(p, amout+1);     
+                        cart.put(p, quantity+1);     
 
                     } catch (NullPointerException e) { /* Caso não exista produto será lançada uma excessão */
                         
@@ -180,7 +181,7 @@ public class Market {
                         if(option == 1){
                             buyProduct(); //Retorna o mesmo método caso o usuário queria prosseguir a compra
                         }else{
-                            //checkout(); //Metodo finalizar compra
+                            checkout(); //Metodo finalizar compra
                         }
 
                     } else {
@@ -226,6 +227,32 @@ public class Market {
             System.out.println("Carrinho está vazio!");
 
         }
+
+        menu();
+
+    }
+
+    private static void checkout(){
+
+        Double purchaseValue = 0.0;
+        System.out.println("Seus produtos: ");
+
+        for(Product p : cart.keySet()){
+
+            int quantity = cart.get(p);
+            purchaseValue += p.getPrice() * quantity;
+            System.out.println(p);
+            System.out.println("Quantidade: " + quantity);
+            System.out.println("------------------------------");
+
+        }
+
+        System.out.println("Valor total da compra: " + Utils.doubleToString(purchaseValue));
+        cart.clear(); // Limpa o carrinho após a compra
+
+        System.out.println("------------------------------------------------------------");
+        System.out.println("-----------------OBRIGADO PELA PREFERÊNCIA!-----------------");
+        System.out.println("------------------------------------------------------------");
 
         menu();
 
